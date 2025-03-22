@@ -5,9 +5,9 @@ TBLPROPERTIES ("quality" = "bronze")
 AS 
 SELECT 
   *, 
-  reverse(split(input_file_name(), '/'))[0] as Source_Data_File, 
+  reverse(split(_metadata.file_path, '/'))[0] as Source_Data_File, 
   date_format(from_utc_timestamp(now(), 'Australia/Sydney'), 'yyyy-MM-dd hh:mm:ss') as Record_Insertion_Date 
-FROM cloud_files("/FileStore/${foldername}/employee*.csv","csv")
+FROM cloud_files("/Volumes/puneet_catalog/puneet_schema/puneet_volume/employee/","csv")
 
 -- COMMAND ----------
 
@@ -17,9 +17,9 @@ TBLPROPERTIES ("quality" = "bronze")
 AS 
 SELECT 
   *,
-  reverse(split(input_file_name(), '/'))[0] as Source_Data_File, 
+  reverse(split(_metadata.file_path, '/'))[0] as Source_Data_File, 
   date_format(from_utc_timestamp(now(), 'Australia/Sydney'), 'yyyy-MM-dd hh:mm:ss') as Record_Insertion_Date 
-FROM cloud_files("/FileStore/${foldername}/department*.csv","csv")
+FROM cloud_files("/Volumes/puneet_catalog/puneet_schema/puneet_volume/department/","csv")
 
 -- COMMAND ----------
 
@@ -29,9 +29,9 @@ TBLPROPERTIES ("quality" = "bronze")
 AS 
 SELECT 
   *,
-  reverse(split(input_file_name(), '/'))[0] as Source_Data_File,
+  reverse(split(_metadata.file_path, '/'))[0] as Source_Data_File,
   date_format(from_utc_timestamp(now(), 'Australia/Sydney'), 'yyyy-MM-dd hh:mm:ss') as Record_Insertion_Date 
-FROM cloud_files("/FileStore/${foldername}/emp_dept*.csv","csv")
+FROM cloud_files("/Volumes/puneet_catalog/puneet_schema/puneet_volume/emp_dept/","csv")
 
 -- COMMAND ----------
 
